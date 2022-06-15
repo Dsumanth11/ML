@@ -1,31 +1,266 @@
-Gaussian
+ANN
+
+import tensorflow as tf
+import numpy as np
+import keras 
+from keras.layers import Dense
+from sklearn import datasets
+from sklearn.metrics import accuracy_score,confusion_matrix
+from sklearn.model_selection import train_test_split
+from keras import Sequential
+from keras.models import save_model
+wine=datasets.load_wine()
+X_train,X_test,y_train,y_test=train_test_split(wine.data,wine.target,test_size=0.25)
+classifier=Sequential()
+classifier.add(Dense(units = 128, activation = 'sigmoid'))
+classifier.add(Dense(units = 64 , activation = "sigmoid"))
+classifier.add(Dense(units = 1,   activation = "softmax"))
+classifier.compile(optimizer = "adam", loss = "binary_crossentropy", metrics = ["accuracy"])
+classifier.fit(X_train, y_train, batch_size = 30, epochs = 500)
+y_pred=classifier.predict(X_test)
+accuracy_score(y_test,y_pred)
 
 
-from sklearn.naive_bayes import   GaussianNB
-gnb=GaussianNB()
+Bar graph syntax
+
+import matplotlib.pyplot as plt
+plt.title("Accuracies Of Naive Bayesian")
+plt.bar(range(1, k + 1),value)
+plt.show()
 
 
-KNN
+Stroke:
+strokes_processed = pd.get_dummies(strokes, columns = ['gender', 'ever_married', 'work_type', 'Residence_type', 'smoking_status'])
+
+feature_names = ['gender','age','hypertension','heart_disease','ever_married','work_type','Residence_type','avg_glucose_level','smoking_status']
+target_names = ['stroke']
+
+y = strokes_processed['stroke']
+X = strokes_processed.drop(['stroke', 'bmi'], axis = 1)
+
+
+
+
+
+
+
+
+
+
+
+Decision tree syntax
+
+from sklearn.tree import DecisionTreeClassifier, export_graphviz
+import matplotlib.pyplot as plt
+import graphviz
+dot_data = export_graphviz(
+    dtc, 
+    out_file = None,
+    feature_names = iris.feature_names,
+    class_names = iris.target_names,
+    filled = True
+)
+
+graph = graphviz.Source(dot_data, format = 'png')
+graph
+
+Cluster diag
+scaler = preprocessing.StandardScaler()
+scaler.fit(X)
+scaler_X = scaler.transform(X)
+SX = pd.DataFrame(scaler_X, columns = X.columns)
+
+gmm = GaussianMixture(n_components = k)
+gmm.fit(SX)
+clusters = GaussianMixture.predict(SX)
+analyze_plot(clusters, "GaussianMixture")
+
+
+
+
+
+
+Heat map
+
+from seaborn import heatmap
+cm = pd.DataFrame(confusion_matrix(y_test, y_pred), index = ['setosa','versicolor','virginica'], columns = ['setosa','versicolor','virginica'] )
+
+heatmap(cm, annot = True)
+plt.title("Confusion Matrix")
+plt.xlabel("Predicted labels")
+plt.ylabel("Actual labels")
+plt.show()
+
+
+
+GAUSSIAN NB
+
+import pandas as pd
+import numpy as np
+from sklearn import datasets
+from sklearn.metrics import classification_report,accuracy_score,confusion_matrix
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+ 
+value=[]
+k=5
+for i in range(k):
+  iris=datasets.load_iris()
+  nb=GaussianNB()
+  X_train,X_test,y_train,y_test=train_test_split(iris.data,iris.target,test_size=0.25)
+  nb.fit(X_train,y_train)
+  y_pred=nb.predict(X_test)
+  acc=accuracy_score(y_test,y_pred)
+  acc
+  value.append(acc)
+print("average accuracy of model is ",sum(value)/k)
+ 
+ 
+ 
+ 
+kneigborsClassifier
+ 
+import pandas as pd
+import numpy as np
+from sklearn import datasets
+from sklearn.metrics import classification_report,accuracy_score,confusion_matrix
+from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
-knn=KNeighborsClassifier(n_neigbors=give odd value here)
-
+ 
+value=[]
+k=5
+for i in range(k):
+  iris=datasets.load_iris()
+  nb=KNeighborsClassifier(n_neighbors=5)
+  X_train,X_test,y_train,y_test=train_test_split(iris.data,iris.target,test_size=0.25)
+  nb.fit(X_train,y_train)
+  y_pred=nb.predict(X_test)
+  acc=accuracy_score(y_test,y_pred)
+  acc
+  value.append(acc)
+print("average accuracy of model is ",sum(value)/k)
+ 
 SVM
+ 
+import pandas as pd
+import numpy as np
+from sklearn import datasets
+from sklearn.metrics import classification_report,accuracy_score,confusion_matrix
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
-sv=SVC(kernel=’linear’)
-
-Decision_tree
+ 
+value=[]
+k=5
+for i in range(k):
+  iris=datasets.load_iris()
+  nb=SVC(kernel='linear')
+  X_train,X_test,y_train,y_test=train_test_split(iris.data,iris.target,test_size=0.25)
+  nb.fit(X_train,y_train)
+  y_pred=nb.predict(X_test)
+  acc=accuracy_score(y_test,y_pred)
+  acc
+  value.append(acc)
+print("average accuracy of model is ",sum(value)/k)
+ 
+ 
+DecisionTreeClassifier
+ 
+import pandas as pd
+import numpy as np
+from sklearn import datasets
+from sklearn.metrics import classification_report,accuracy_score,confusion_matrix
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
-dtc=DecisionTreeClassifier()
-
-
-AdaBoost Classifier
-
+ 
+value=[]
+k=5
+for i in range(k):
+  iris=datasets.load_iris()
+  nb=DecisionTreeClassifier()
+  X_train,X_test,y_train,y_test=train_test_split(iris.data,iris.target,test_size=0.25)
+  nb.fit(X_train,y_train)
+  y_pred=nb.predict(X_test)
+  acc=accuracy_score(y_test,y_pred)
+  acc
+  value.append(acc)
+print("average accuracy of model is ",sum(value)/k)
+ 
+ 
+ 
+AdaBoostClassifier
+ 
+import pandas as pd
+import numpy as np
+from sklearn import datasets
+from sklearn.metrics import classification_report,accuracy_score,confusion_matrix
+from sklearn.model_selection import train_test_split
 from sklearn.ensemble import AdaBoostClassifier
-abc=AdaBoostClassifier()
+ 
+value=[]
+k=5
+for i in range(k):
+  iris=datasets.load_iris()
+  nb=AdaBoostClassifier()
+  X_train,X_test,y_train,y_test=train_test_split(iris.data,iris.target,test_size=0.25)
+  nb.fit(X_train,y_train)
+  y_pred=nb.predict(X_test)
+  acc=accuracy_score(y_test,y_pred)
+  acc
+  value.append(acc)
+print("average accuracy of model is ",sum(value)/k)
+ 
+MNIST
 
-Clustering
-From sklearn.cluster import kMeans
-From sklearn.mixture import GaussianMixture
-From sklearn.cluster import AgglomerativeClustering
+import keras
+import numpy as np 
+import pandas as pd
+from keras.datasets import mnist
+from sklearn.metrics import confusion_matrix,accuracy_score
+(xtr,ytr),(xte,yte)=mnist.load_data()
+xtr=xtr.reshape(60000,28*28)
+xte=xte.reshape(10000,28*28)
+from sklearn.neighbors import KNeighborsClassifier
+knn=KNeighborsClassifier(n_neighbors=3)
+knn.fit(xtr,ytr)
+ypr=knn.predict(xte)
+ac=accuracy_score(ypr,yte)
+Ac
+ 
+Em clustering
+ 
+import pandas as pd
+import numpy as np
+from sklearn.mixture import GaussianMixture
+from sklearn.cluster import AgglomerativeClustering,KMeans
+from sklearn import datasets
+from scipy.stats import mode
+from sklearn.metrics import accuracy_score
+iris=datasets.load_iris()
+x=iris.data
+y=iris.target
+em=GaussianMixture(n_components=5)
+clusters=em.fit_predict(x)
+labels=np.zeros_like(clusters)
+for i in range(4):
+  cat=(i==clusters)
+  labels[cat]=mode(y[cat])[0]
+acc=accuracy_score(y,labels)
+acc
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
 
 
