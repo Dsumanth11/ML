@@ -1,0 +1,31 @@
+Gaussian
+
+
+from sklearn.naive_bayes import   GaussianNB
+gnb=GaussianNB()
+
+
+KNN
+from sklearn.neighbors import KNeighborsClassifier
+knn=KNeighborsClassifier(n_neigbors=give odd value here)
+
+SVM
+from sklearn.svm import SVC
+sv=SVC(kernel=’linear’)
+
+Decision_tree
+from sklearn.tree import DecisionTreeClassifier
+dtc=DecisionTreeClassifier()
+
+
+AdaBoost Classifier
+
+from sklearn.ensemble import AdaBoostClassifier
+abc=AdaBoostClassifier()
+
+Clustering
+From sklearn.cluster import kMeans
+From sklearn.mixture import GaussianMixture
+From sklearn.cluster import AgglomerativeClustering
+
+
